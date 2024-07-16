@@ -7,7 +7,7 @@ public class ZarinPalPaymentAd : IPaymentOrderAdapter
     {
         _zarinPalPayment = zarinPalPayment;
     }
-    public string Pay(decimal amount, int orderId)
+    public string PayOrder(decimal amount, int orderId)
     {
         return _zarinPalPayment.Pay(amount, orderId);
     }

@@ -8,7 +8,7 @@ public class SamanPaymentAd : IPaymentOrderAdapter
         _samanPayment = samanPayment;
     }
 
-    public string Pay(decimal amount, int orderId)
+    public string PayOrder(decimal amount, int orderId)
     {
         return _samanPayment.Pay(amount, orderId);
     }

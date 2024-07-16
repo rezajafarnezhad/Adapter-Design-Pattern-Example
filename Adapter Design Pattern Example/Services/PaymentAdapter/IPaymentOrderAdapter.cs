@@ -2,5 +2,5 @@
 
 public interface IPaymentOrderAdapter
 {
-    string Pay(decimal amount, int orderId);
+    string PayOrder(decimal amount, int orderId);
 }

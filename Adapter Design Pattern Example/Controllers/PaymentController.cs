@@ -5,20 +5,16 @@ namespace Adapter_Design_Pattern_Example.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class PaymentController : ControllerBase
+public class PaymentController(IServiceProvider serviceProvider) : ControllerBase
 {
 
-    public readonly IServiceProvider _ServiceProvider;
-    public PaymentController(IServiceProvider serviceProvider)
-    {
-        _ServiceProvider = serviceProvider;
-    }
+    public readonly IServiceProvider ServiceProvider = serviceProvider;
 
     [HttpPost("payment")]
     public IActionResult PaymentOrder([FromBody] PaymentModel model)
     {
-        var orderPaymentService = _ServiceProvider.GetRequiredKeyedService<IPaymentOrderAdapter>(model.PaymentGetWay.ToString());
-        var result = orderPaymentService.Pay(model.Amount, model.OrderId);
+        var orderPaymentService = ServiceProvider.GetRequiredKeyedService<IPaymentOrderAdapter>(model.PaymentGetWay.ToString());
+        var result = orderPaymentService.PayOrder(model.Amount, model.OrderId);
         return Content(result);
     }
 }
